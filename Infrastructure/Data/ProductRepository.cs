@@ -1,5 +1,6 @@
 ﻿using Core.Entities;
 using Core.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,41 +9,41 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Data
 {
-    internal class ProductRepository : IProductRepository
+    internal class ProductRepository(StoreContext context) : IProductRepository
     {
         public void AddProduct(Product product)
         {
-            throw new NotImplementedException();
+            context.Products.Add(product);
         }
 
         public void DeleteProduct(Product product)
         {
-            throw new NotImplementedException();
+            context.Products.Remove(product);
         }
 
-        public Task<IReadOnlyList<Product>> GetPoductsAsync()
+        public async Task<Product?> GetProductByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await context.Products.FindAsync(id);
         }
 
-        public Task<Product?> GetProductByIdAsync(int id)
+        public async Task<IReadOnlyList<Product>> GetPoductsAsync()
         {
-            throw new NotImplementedException();
+            return await context.Products.ToListAsync();
         }
 
         public bool ProductExists(int id)
         {
-            throw new NotImplementedException();
+            return context.Products.Any(x => x.Id == id);   
         }
 
-        public Task<bool> SaveChangesAsync()
+        public async Task<bool> SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return await context.SaveChangesAsync() > 0;
         }
 
         public void UpdateProduct(Product product)
         {
-            throw new NotImplementedException();
+            context.Entry(product).State = EntityState.Modified;
         }
     }
 }
