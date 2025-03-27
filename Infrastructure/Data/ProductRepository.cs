@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Data
 {
-    internal class ProductRepository(StoreContext context) : IProductRepository
+    public class ProductRepository(StoreContext context) : IProductRepository
     {
         public void AddProduct(Product product)
         {
