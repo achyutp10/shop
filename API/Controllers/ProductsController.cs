@@ -65,6 +65,17 @@ namespace API.Controllers
 
         }
 
+        [HttpGet("brands")]
+        public async Task<ActionResult<IReadOnlyList<string>>> GetBrands()
+        {
+            return Ok(await repo.GetBrandsAsync());
+        }
+        [HttpGet("types")]
+        public async Task<ActionResult<IReadOnlyList<string>>> GetTypes()
+        {
+            return Ok(await repo.GetTypesAsync());
+        }
+
         private bool ProductExists(int id)
         {
             return repo.ProductExists(id);
