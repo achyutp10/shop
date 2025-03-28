@@ -1,5 +1,6 @@
 ﻿using Core.Entities;
 using Core.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,37 +13,39 @@ namespace Infrastructure.Data
     {
         public void Add(T entity)
         {
-            throw new NotImplementedException();
+           context.Set<T>().Add(entity);
         }
 
         public bool Exists(int id)
         {
-            throw new NotImplementedException();
+           return context.Set<T>().Any(x => x.Id == id);
+
         }
 
-        public Task<T?> GetByIdAsync(int id)
+        public async Task<T?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await context.Set<T>().FindAsync(id);
         }
 
-        public Task<IReadOnlyList<T>> ListAllAsync(int id)
+        public async Task<IReadOnlyList<T>> ListAllAsync(int id)
         {
-            throw new NotImplementedException();
+            return await context.Set<T>().ToListAsync();
         }
 
         public void Remove(T entity)
         {
-            throw new NotImplementedException();
+            context.Set<T>().Remove(entity);
         }
 
-        public Task<bool> SaveAllAsync()
+        public async Task<bool> SaveAllAsync()
         {
-            throw new NotImplementedException();
+            return await context.SaveChangesAsync() > 0;
         }
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            context.Set<T>().Attach(entity);
+            context.Entry(entity).State = EntityState.Modified;
         }
     }
 }
