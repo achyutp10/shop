@@ -26,9 +26,15 @@ namespace Infrastructure.Data
             return await context.Products.FindAsync(id);
         }
 
-        public async Task<IReadOnlyList<Product>> GetPoductsAsync()
+        public async Task<IReadOnlyList<Product>> GetPoductsAsync(string? brands, string? types)
         {
-            return await context.Products.ToListAsync();
+            var query = context.Products.AsQueryable();
+            if (!string.IsNullOrWhiteSpace(brands))
+                query = query.Where(x => x.Brand == brands);
+            if (!string.IsNullOrWhiteSpace(types))
+                query = query.Where(x => x.Type == types);
+
+            return await query.ToListAsync();
         }
 
         public bool ProductExists(int id)
