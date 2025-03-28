@@ -26,13 +26,22 @@ namespace Infrastructure.Data
             return await context.Products.FindAsync(id);
         }
 
-        public async Task<IReadOnlyList<Product>> GetPoductsAsync(string? brands, string? types)
+        public async Task<IReadOnlyList<Product>> GetPoductsAsync(string? brands, string? types, string? sort)
         {
             var query = context.Products.AsQueryable();
             if (!string.IsNullOrWhiteSpace(brands))
                 query = query.Where(x => x.Brand == brands);
             if (!string.IsNullOrWhiteSpace(types))
                 query = query.Where(x => x.Type == types);
+
+            query = sort switch
+            {
+                "priceAsc" => query.OrderBy(x => x.Price),
+                "priceDesc" => query.OrderByDescending(x => x.Price),
+                _ => query.OrderBy(x => x.Name)
+            };
+
+
 
             return await query.ToListAsync();
         }

@@ -12,9 +12,9 @@ namespace API.Controllers
     {
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts(string? brand, string? type)
+        public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts(string? brand, string? type, string? sort)
         {
-            return Ok(await repo.GetPoductsAsync(brand, type));
+            return Ok(await repo.GetPoductsAsync(brand, type, sort));
         }
 
         [HttpGet("{id:int}")] // api/products/2
