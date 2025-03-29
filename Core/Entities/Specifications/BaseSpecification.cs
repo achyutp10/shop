@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.Entities.Specifications
 {
-    internal class BaseSpecification<T>(Expression<Func<T, bool>> criteria) : ISpecification<T>
+    public class BaseSpecification<T>(Expression<Func<T, bool>> criteria) : ISpecification<T>
     {
         public Expression<Func<T, bool>> Criteria => criteria;
     }
