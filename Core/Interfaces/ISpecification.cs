@@ -16,6 +16,7 @@ namespace Core.Interfaces
         int Take { get; }
         int Skip { get; }
         bool IsPagingEnabled { get; }   
+        IQueryable<T> ApplyCriteria(IQueryable<T> query);   
     }
 
     public interface ISpecification<T, TResult> : ISpecification<T>

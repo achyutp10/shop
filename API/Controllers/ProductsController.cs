@@ -1,4 +1,5 @@
-﻿using Core.Entities;
+﻿using API.RequestHelpers;
+using Core.Entities;
 using Core.Entities.Specifications;
 using Core.Interfaces;
 using Infrastructure.Data;
@@ -17,7 +18,11 @@ namespace API.Controllers
         {
             var spec = new ProductSpecification(specParams);
             var products = await repo.ListAsync(spec);
-            return Ok(products);
+            var count = await repo.CountAsync(spec);
+
+            var pagination = new Pagination<Product>(specParams.PageIndex, specParams.PageSize, count, products);
+
+            return Ok(pagination);
         }
 
         [HttpGet("{id:int}")] // api/products/2
