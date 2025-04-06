@@ -2,8 +2,8 @@
 @use "tailwindcss" as *;
 @use '@angular/material' as mat;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 $customTheme: mat.define-theme();
 
 @include mat.core();
