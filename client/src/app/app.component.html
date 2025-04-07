@@ -4,10 +4,5 @@
   <h1 class="text-3xl font-bold underline">
     Welcome to {{title}}
   </h1>
-  <ul>
-    @for (product of products; track product.id ) {
-      <li>{{product.name}}</li>
-      <img src={{product.pictureUrl}} class="max-h-80" alt="">
-    }
-  </ul>
+  <app-shop></app-shop>
 </div>
