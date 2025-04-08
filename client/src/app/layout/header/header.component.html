@@ -1,4 +1,4 @@
-<header class="border-b shadow-md p-3 w-full max-h-20 fixed top-0 z-50 bg-white">
+<header class="border-b shadow-md p-3 w-full">
   <div class="flex align-middle items-center justify-between max-w-screen-2xl mx-auto">
       <img routerLink="/" src="/images/logo.png" alt="app logo" class="max-h-16">
       <nav class="flex gap-3 my-2 uppercase text-2xl">
@@ -24,9 +24,11 @@
       </div>
   </div>
 </header>
+@if (busyService.loading) {
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
 
-
-  <button mat-menu-item class="px-3" routerLink="/cart">
+ <!-- <button mat-menu-item class="px-3" routerLink="/cart">
       My cart
   </button>
   <button mat-menu-item class="px-3" routerLink="/orders">
@@ -34,4 +36,4 @@
   </button>
   <button mat-menu-item class="px-3">
       Logout
-  </button>
+  </button> -->

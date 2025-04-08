@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-shop',
   imports: [
-    MatCard,
+    // MatCard,
     ProductItemComponent,
     MatButton,
     MatIcon,
