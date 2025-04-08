@@ -4,6 +4,7 @@
       <nav class="flex gap-3 my-2 uppercase text-2xl">
           <a routerLink="/"
               routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact: true}"
           >Home</a>
           <a routerLink="/shop" routerLinkActive="active">Shop</a>
           <a routerLink="/test-error" routerLinkActive="active">Errors</a>
