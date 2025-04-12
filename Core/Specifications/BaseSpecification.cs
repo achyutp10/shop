@@ -20,7 +20,7 @@ namespace Core.Entities.Specifications
         public bool IsDistinct { get; private set; }
 
         public int Take { get; private set; }
-
+        
         public int Skip { get; private set; }
 
         public bool IsPagingEnabled { get; private set; }
