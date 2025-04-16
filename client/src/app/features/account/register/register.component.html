@@ -6,12 +6,18 @@
       <mat-form-field appearance="outline" class="w-full mb-4">
         <mat-label>First Name</mat-label>
         <input formControlName="firstName" type="text" placeholder="Harry" matInput />
+        @if (registerForm.get('firstName')?.hasError('required')) {
+          <mat-error>First Name is required</mat-error>
+        }
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="w-full mb-4">
       <mat-label>Last Name</mat-label>
       <input formControlName="lastName" type="text" placeholder="Smith" matInput />
-  </mat-form-field>
+      @if (registerForm.get('lastName')?.hasError('required')) {
+        <mat-error>Last Name is required</mat-error>
+      }
+    </mat-form-field>
 
       <mat-form-field appearance="outline" class="w-full mb-4">
           <mat-label>Email address</mat-label>
@@ -32,6 +38,6 @@
         </div>
     }
 
-      <button mat-flat-button type="submit" class="w-full py-2">Sign in</button>
+      <button [disabled]="registerForm.invalid" mat-flat-button type="submit" class="w-full py-2">Sign in</button>
   </form>
 </mat-card>
